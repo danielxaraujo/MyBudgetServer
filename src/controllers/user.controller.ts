@@ -1,4 +1,4 @@
-import * as logger from 'winston';
+import * as logger from 'logops';
 import { Router, Request, Response, NextFunction } from "express";
 import { UserDAO } from "../dao/user.dao";
 

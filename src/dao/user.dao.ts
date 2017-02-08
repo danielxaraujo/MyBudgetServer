@@ -1,17 +1,17 @@
 import * as Q from 'q';
 import * as assert from 'assert';
-import * as logger from 'winston';
+import * as logger from 'logops';
 import { ObjectID } from 'mongodb';
-import { DataAccess } from './abstract.dao';
+import { dataAccess } from './data.access';
 
 // Create a class to manage the data manipulation.
-export class UserDAO extends DataAccess {
+export class UserDAO {
 
     // Get a new Student based on the user name.
     public getUser(userName: string): any {
         let deferred = Q.defer();
-        if (this.dbConnection) {
-            let cursor = this.dbConnection.collection('users').find();
+        if (dataAccess.dbConnection) {
+            let cursor = dataAccess.dbConnection.collection('users').find();
             cursor.each((err, document) => {
                 assert.equal(err, null);
                 if (err) {
@@ -28,8 +28,8 @@ export class UserDAO extends DataAccess {
 
     public getUseByPassword(userName: string): any {
         let deferred = Q.defer();
-        if (this.dbConnection) {
-            let cursor = this.dbConnection.collection('users').find();
+        if (dataAccess.dbConnection) {
+            let cursor = dataAccess.dbConnection.collection('users').find();
             cursor.each((err, document) => {
                 assert.equal(err, null);
                 if (err) {
@@ -45,23 +45,23 @@ export class UserDAO extends DataAccess {
     }
 
     public insertUser(user: any): any {
-        return this.insertDocument(user, 'users');
+        return dataAccess.insertDocument(user, 'users');
     }
 
     // Return a promise of an array of users
     public getAllUsers(): any {
-        return this.getAllDocuments('users');
+        return dataAccess.getAllDocuments('users');
     }
 
     public addConta(idUser: string, idConta: string): any {
-        if (this.dbConnection) {
-            return this.dbConnection.collection('users').update({ _id: idUser }, { $push: { contas: idConta } });
+        if (dataAccess.dbConnection) {
+            return dataAccess.dbConnection.collection('users').update({ _id: idUser }, { $push: { contas: idConta } });
         }
     }
 
     public removeConta(idUser: string, idConta: string): any {
-        if (this.dbConnection) {
-            return this.dbConnection.collection('users').update({ _id: idUser }, { $pull: { contas: { $in: [idConta] } } }, { multi: true });
+        if (dataAccess.dbConnection) {
+            return dataAccess.dbConnection.collection('users').update({ _id: idUser }, { $pull: { contas: { $in: [idConta] } } }, { multi: true });
         }
     }
 }

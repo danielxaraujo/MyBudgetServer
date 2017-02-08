@@ -1,18 +1,18 @@
 import * as Q from 'q';
 import * as assert from 'assert';
-import * as logger from 'winston';
+import * as logger from 'logops';
 import { MongoClient, ObjectID } from 'mongodb';
 
 // Create a class to manage the data manipulation.
 export class DataAccess {
 
-    public shareItUrl: string = 'mongodb://127.0.0.1:27017/budget';
+    public static shareItUrl: string = 'mongodb://127.0.0.1:27017/budget';
     public dbConnection: any = null;
 
     // Open the MongoDB connection.
     public openDbConnection() {
         if (this.dbConnection == null) {
-            MongoClient.connect(this.shareItUrl, (err, db) => {
+            MongoClient.connect(DataAccess.shareItUrl, (err, db) => {
                 assert.equal(null, err);
                 logger.info("** Connected correctly to MongoDB server.");
                 this.dbConnection = db;
@@ -92,3 +92,5 @@ export class DataAccess {
         return deferred.promise;
     }
 }
+
+export const dataAccess: DataAccess = new DataAccess();

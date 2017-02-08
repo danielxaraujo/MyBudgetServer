@@ -1,2 +1,2 @@
-export * from './abstract.dao';
+export * from './data.access';
 export * from './user.dao';
