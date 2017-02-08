@@ -1,19 +1,19 @@
 import * as Q from 'q';
-import * as Assert from 'assert';
-import * as logger from 'winston';
+import * as assert from 'assert';
+import * as logger from 'logops';
 import { MongoClient, ObjectID } from 'mongodb';
 
 // Create a class to manage the data manipulation.
 export class DataAccess {
 
     public static shareItUrl: string = 'mongodb://127.0.0.1:27017/budget';
-    private dbConnection: any = null;
+    public dbConnection: any = null;
 
     // Open the MongoDB connection.
     public openDbConnection() {
         if (this.dbConnection == null) {
             MongoClient.connect(DataAccess.shareItUrl, (err, db) => {
-                Assert.equal(null, err);
+                assert.equal(null, err);
                 logger.info("** Connected correctly to MongoDB server.");
                 this.dbConnection = db;
             });
@@ -33,7 +33,7 @@ export class DataAccess {
         logger.info("** DAL - insertDocument: %j, %j", document, collectionName);
         let deferred: Q.Deferred<{}> = Q.defer();
         this.dbConnection.collection(collectionName).insertOne(document, (err, result) => {
-            Assert.equal(err, null);
+            assert.equal(err, null);
             if (err) {
                 deferred.reject(new Error(JSON.stringify(err)));
             }
@@ -44,35 +44,28 @@ export class DataAccess {
 
     // Return a Promise of an array od documents
     public getAllDocuments(collectionName: string): any {
-
         let allDocuments = [];
         let deferred: Q.Deferred<{}> = Q.defer();
-
         if (this.dbConnection) {
             let cursor = this.dbConnection.collection(collectionName).find();
             cursor.each((err, document) => {
                 logger.info("** document = %j", document);
-
                 if (err) {
                     deferred.reject(new Error(JSON.stringify(err)));
                 }
                 if (document) {
                     allDocuments.push(document);
                 }
-
                 deferred.resolve(allDocuments);
             });
         }
-
         return deferred.promise;
     }
 
     //Obter um documento pelo atributo _id passado como parâmetro
     //A funcao findOne retorna uma Promise, entao eh soh retorna-la
     public getDocumentById(collectionName: string, id: string): any {
-
         let idAsObjectID = ObjectID.createFromHexString(id);
-
         if (this.dbConnection) {
             return this.dbConnection.collection(collectionName).findOne({ _id: idAsObjectID });
         }
@@ -80,9 +73,7 @@ export class DataAccess {
 
     // Recebe o _id do documento como string, transforma em ObjectID e o remove.
     public removeDocumentById(collectionName: string, id: string): any {
-
         let idAsObjectID = ObjectID.createFromHexString(id);
-
         if (this.dbConnection) {
             return this.dbConnection.collection(collectionName).removeOne({ _id: idAsObjectID }, { w: 1 });
         }
@@ -92,7 +83,7 @@ export class DataAccess {
     public getDocumentCount(collectionName: string): any {
         let deferred: Q.Deferred<{}> = Q.defer();
         this.dbConnection && this.dbConnection.collection(collectionName).count((err, result) => {
-            Assert.equal(err, null);
+            assert.equal(err, null);
             if (err) {
                 deferred.reject(new Error(JSON.stringify(err)));
             }
@@ -100,5 +91,6 @@ export class DataAccess {
         });
         return deferred.promise;
     }
-
 }
+
+export const dataAccess: DataAccess = new DataAccess();
