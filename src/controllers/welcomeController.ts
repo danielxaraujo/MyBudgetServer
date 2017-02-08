@@ -1,6 +1,7 @@
 // Import only what we need from express
 import { Router, Request, Response } from 'express';
 
+
 // Assign router to the express.Router() instance
 const router: Router = Router();
 
@@ -14,7 +15,7 @@ router.get('/', (req: Request, res: Response) => {
 
 router.get('/:name', (req: Request, res: Response) => {
     // Extract the name from the request parameters
-    let name: {} = req.params;
+    let name = req.params['name'];
 
     // Greet the given name
     res.send(`Hello, ${name}`);
