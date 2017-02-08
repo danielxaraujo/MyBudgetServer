@@ -13,12 +13,6 @@ router.get("/all", function(request: Request, response: Response, next: NextFunc
             "status": "sucesso",
             "users": users
         });
-    }).catch((e) => {
-        logger.info("** Error = %j", e);
-        return response.json({
-            "status": "erro",
-            "message": "Erro ao autenticar usuário!"
-        });
     });
 });
 
