@@ -1,8 +1,9 @@
 import * as logger from 'logops';
 import { Router, Request, Response, NextFunction } from "express";
+import { Promise } from 'es6-shim';
 import { UserDAO } from "../dao/user.dao";
 
-let userDAO = new UserDAO();
+const userDAO = new UserDAO();
 
 const router: Router = Router();
 
@@ -13,7 +14,7 @@ router.get("/all", function(request: Request, response: Response, next: NextFunc
             "status": "sucesso",
             "users": users
         });
-    });
+    })
 });
 
 export const UserController: Router = router;
