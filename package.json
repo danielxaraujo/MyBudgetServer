@@ -4,15 +4,15 @@
 	"license": "MIT",
 	"scripts": {
 		"start": "npm run build:live",
-		"build:live": "nodemon --watch ./src/**/*.ts --exec ts-node ./src/server.ts"
+		"build:live": "nodemon --exec ts-node ./src/server.ts"
 	},
 	"private": true,
 	"dependencies": {
-		"assert": "^1.4.1",
 		"express": "^4.14.1",
+		"express-logging": "^1.1.1",
+		"logops": "^1.0.7",
 		"mongodb": "^2.2.22",
-		"q": "^1.4.1",
-		"winston": "^2.3.1"
+		"q": "^1.4.1"
 	},
 	"devDependencies": {
 		"@types/node": "^7.0.4",
@@ -21,9 +21,7 @@
 		"@types/serve-static": "^1.7.31",
 		"@types/mime": "0.0.29",
 		"@types/mongodb": "^2.1.38",
-		"@types/assert": "0.0.31",
 		"@types/q": "0.0.32",
-		"@types/winston": "^2.2.0",
 		"nodemon": "^1.11.0",
 		"ts-node": "2.0.0",
 		"typescript": "^2.1.5"
