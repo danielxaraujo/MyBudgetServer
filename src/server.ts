@@ -1,25 +1,22 @@
-// Import everything from express and assign it to the express variable
 import * as express from 'express';
 import * as expressLogging from 'express-logging';
 import * as logger from 'logops';
-
-// Import WelcomeController from controllers entry point
 import { UserController } from './controllers';
 
-// Create a new express application instance
+// Criar uma instância do servidor Express
 const app: express.Application = express();
 
 app.use(expressLogging(logger));
-logger.info("** LOGGER INICIALIZADO");
+logger.info("## Inicializando o Log");
 
-// The port the express app will listen on
+// Porta que o express irá escutar as requisições
 const port: number = process.env.PORT || 3000;
 
-// Mount the WelcomeController at the /welcome route
-app.use('/api/user', UserController);
+// Montando o Controller para gerenciar os usuários 
+app.use('/api/users', UserController);
 
-// Serve the application at the given port
+// Iniciar o servidor na porta especificada
 app.listen(port, () => {
-    // Success callback
-    logger.info(`Listening at http://localhost:${port}/`);
+    // Mensagem de inicialização com sucesso
+    logger.info(`## Escutando no endereço: http://localhost:${port}/`);
 });

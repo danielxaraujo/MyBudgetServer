@@ -1,38 +1,36 @@
-import * as Q from 'q';
-import * as assert from 'assert';
 import * as logger from 'logops';
 import * as monk from 'monk';
 import { Promise } from 'es6-shim';
 
-// Create a class to manage the data manipulation.
+// Classe genérica para manipulação do MongoDB
 export class DataAccess {
 
-    private static dbConnection = null;
+    private _dbConnection = null;
 
+    // Construtor da classe
     constructor() {
         this.openDbConnection();
     }
 
-    // Open the existing connection.
+    // Abrir conexão com o MongoDB
     private openDbConnection() {
-        if (DataAccess.dbConnection == null) {
-            DataAccess.dbConnection = monk('mongodb://127.0.0.1:27017/budget');
+        if (this._dbConnection == null) {
+            this._dbConnection = monk('mongodb://127.0.0.1:27017/budget');
         }
     }
 
-    // Close the existing connection.
+    // Fechar conexão com o MongoDB
     public closeDbConnection() {
-        if (DataAccess.dbConnection) {
-            DataAccess.dbConnection.close();
-            DataAccess.dbConnection = null;
+        if (this._dbConnection) {
+            this._dbConnection.close();
+            this._dbConnection = null;
         }
     }
 
-    // Return a Promise of an array od documents
+    // Retornar todos os elementos de um documento
     public getAllDocuments(collectionName: string): Promise<{}> {
-        if (DataAccess.dbConnection) {
-            logger.info("** Consultando Collection = %j", collectionName);
-            return DataAccess.dbConnection.get(collectionName).find();
+        if (this._dbConnection) {
+            return this._dbConnection.get(collectionName).find();
         }
     }
 }
