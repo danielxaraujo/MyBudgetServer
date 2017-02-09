@@ -8,6 +8,7 @@
 
 # misc
 npm-debug.log
+.vscode/**/*.*
 
 #System Files
 .DS_Store

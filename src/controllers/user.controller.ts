@@ -1,9 +1,11 @@
+import 'core-js/es7/reflect';
 import * as logger from 'logops';
 import { Router, Request, Response, NextFunction } from "express";
-import { Promise } from 'es6-shim';
+import { Promise } from 'core-js';
 import { UserDAO } from "../dao/user.dao";
+import { Container } from 'typedi';
 
-const userDAO = new UserDAO();
+const userDAO: UserDAO = Container.get(UserDAO);
 
 const router: Router = Router();
 
