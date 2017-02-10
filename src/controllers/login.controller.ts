@@ -13,7 +13,7 @@ const router: Router = Router();
 
 router.post("/login", function (request: Request, response: Response, next: NextFunction) {
 	logger.info("** Login - Resquest body.userName: %s", request.body.userName);
-	userDAO.getUser(request.body.userName).toArray().then(users => {
+	userDAO.getUser(request.body.userName).then(users => {
 		let user: { name } = users[0];
 		const token = sign({ "name": user.name, permissions: [] }, secret, { expiresIn: "7d" });
 		response.json({

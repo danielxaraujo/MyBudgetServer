@@ -3,12 +3,14 @@ import * as expressLogging from 'express-logging';
 import * as logger from 'logops';
 import { json, urlencoded } from "body-parser";
 import { LoginController, UserController } from './controllers';
+import { DataAccess } from './dao';
+import { Container } from 'typedi';
 
 // Criar uma instância do servidor Express
 const app: express.Application = express();
 
-app.use(expressLogging(logger));
 logger.info("## Inicializando o Log");
+app.use(expressLogging(logger));
 
 app.use(json());
 app.use(urlencoded({ extended: true }));
@@ -23,5 +25,6 @@ app.use('/api/users', UserController);
 // Iniciar o servidor na porta especificada
 app.listen(port, () => {
     // Mensagem de inicialização com sucesso
+    Container.get(DataAccess).openDbConnection();
     logger.info(`## Escutando no endereço: http://localhost:${port}/`);
 });
