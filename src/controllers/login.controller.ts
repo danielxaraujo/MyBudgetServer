@@ -5,6 +5,7 @@ import { sign } from "jsonwebtoken";
 import { secret, length, digest } from "../config";
 import { UserDAO } from "../dao/";
 import { Container } from 'typedi';
+import { ObjectID, InsertOneWriteOpResult } from 'mongodb';
 
 const userDAO: UserDAO = Container.get(UserDAO);
 
@@ -24,46 +25,38 @@ router.post("/login", (request: Request, response: Response, next: NextFunction)
 
 	userDAO.getUserByUserName(username).then(user => {
 		const token = sign({ "user": user.username, permissions: [] }, secret, { expiresIn: "7d" });
-		response.json({
-			"status": "sucesso",
-			"jwt": token
-		});
+		response.json({"status": "sucesso", "jwt": token});
 	})
 });
 
 router.post("/signup", (request: Request, response: Response, next: NextFunction) => {
 
-	let user : { username, password, salt, hash }= {
+	logger.info("** Signup - Resquest body.username: %s", request.body.username);
+	logger.info("** Signup - Resquest body.password: %s", request.body.password);
+
+	let newUser : { username, password, salt, hash }= {
 		username: request.body.username,
 		password: request.body.password,
-		salt: null,
-		hash: null
+		salt: '',
+		hash: ''
 	}
 
-    if (!user.password || !user.password.trim()) {
+    if (!newUser.password || !newUser.password.trim()) {
         let err = new Error("Password obrigatório!");
         return next(err);
     }
 
-	userDAO.getUserByUserName(user.username).then(user => {
+	userDAO.getUserByUserName(newUser.username).then(user => {
 		if (user) {
-			response.json({
-                status: "erro",
-                message: "Usuário já existente!"
-            });
-			response.sendStatus(201);
+			response.status(201).json({status: "erro", message: "Usuário já existente!"});
 		} else {
-			user.salt = randomBytes(128).toString("base64");
-			pbkdf2(user.password, user.salt, 10000, length, digest, (err, hash) => {
-				user.hash = hash.toString("hex");
-				userDAO.insertUser(user).then(value => {
+			newUser.salt = randomBytes(128).toString("base64");
+			pbkdf2(newUser.password, newUser.salt, 10000, length, digest, (err, hash) => {
+				newUser.hash = hash.toString("hex");
+				userDAO.insertUser(newUser).then(value => {
 					userDAO.getUserById(value.insertedId).then(savedUser => {
 						const token = sign({ "user": savedUser.username, permissions: [] }, secret, { expiresIn: "7d" });
-						response.json({
-							status: "sucesso",
-							jwt: token
-						});
-						response.sendStatus(201);
+						response.status(201).json({status: "sucesso", jwt: token});
 					});
 				});
 			});

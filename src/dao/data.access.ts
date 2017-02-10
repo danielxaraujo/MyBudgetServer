@@ -51,6 +51,6 @@ export class DataAccess {
 
     // Inserir um documento na coleção
     public insertDocument(collectionName: string, document: {}) : Promise<InsertOneWriteOpResult> {
-        return this._db.collection(collectionName).insert(document);
+        return this._db.collection(collectionName).insertOne(document);
     }
 }

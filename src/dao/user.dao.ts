@@ -32,6 +32,6 @@ export class UserDAO {
 
     // Inserir um usuário
     public insertUser(user: {}) : Promise<InsertOneWriteOpResult> {
-        return this._dataAccess.insertDocument('users', user).then();
+        return this._dataAccess.insertDocument('users', user);
     }
 }

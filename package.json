@@ -17,7 +17,6 @@
 		"jsonwebtoken": "^7.2.1",
 		"logops": "^1.0.7",
 		"mongodb": "^2.2.22",
-		"monk": "^3.1.4",
 		"q": "^1.4.1",
 		"typedi": "^0.4.3"
 	},
@@ -30,11 +29,10 @@
 		"@types/serve-static": "^1.7.31",
 		"@types/body-parser": "0.0.33",
 		"@types/mime": "0.0.29",
-		"@types/mongodb": "^2.1.38",
-		"@types/monk": "^1.0.5",
+		"@types/mongodb": "^2.1.39",
 		"@types/q": "0.0.32",
 		"nodemon": "^1.11.0",
-		"ts-node": "2.0.0",
-		"typescript": "^2.1.5"
+		"ts-node": "2.1.0",
+		"typescript": "^2.1.6"
 	}
 }
