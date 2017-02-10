@@ -1,67 +1,37 @@
-import * as Q from 'q';
-import * as assert from 'assert';
-import * as logger from 'logops';
-import { ObjectID } from 'mongodb';
-import { dataAccess } from './data.access';
+import { Promise } from 'core-js';
+import { ObjectID, InsertOneWriteOpResult } from 'mongodb';
+import { DataAccess } from './data.access';
+import { Service, Inject } from 'typedi';
 
-// Create a class to manage the data manipulation.
+// Classe para manipular os dados de usuários
+@Service()
 export class UserDAO {
 
-    // Get a new Student based on the user name.
-    public getUser(userName: string): any {
-        let deferred = Q.defer();
-        if (dataAccess.dbConnection) {
-            let cursor = dataAccess.dbConnection.collection('users').find();
-            cursor.each((err, document) => {
-                assert.equal(err, null);
-                if (err) {
-                    deferred.reject(new Error(JSON.stringify(err)));
-                } else if (document !== null && document['userName'] === userName) {
-                    return deferred.resolve(document);
-                } else if (document === null) {
-                    return deferred.resolve(document);
-                }
-            });
-        }
-        return deferred.promise;
+    @Inject()
+    private _dataAccess: DataAccess;
+
+    // Obter todos os usuários
+    public getAllUsers() : Promise<any[]> {
+        return this._dataAccess.getAllDocuments('users');
     }
 
-    public getUseByPassword(userName: string): any {
-        let deferred = Q.defer();
-        if (dataAccess.dbConnection) {
-            let cursor = dataAccess.dbConnection.collection('users').find();
-            cursor.each((err, document) => {
-                assert.equal(err, null);
-                if (err) {
-                    deferred.reject(new Error(JSON.stringify(err)));
-                } else if (document !== null && document['userName'] === userName) {
-                    return deferred.resolve(document);
-                } else if (document === null) {
-                    return deferred.resolve(document);
-                }
-            });
-        }
-        return deferred.promise;
+    // Obter usuários pelo critério de consulta
+    public getUser(query: {}) : Promise<any[]> {
+        return this._dataAccess.getDocuments('users', query);
     }
 
-    public insertUser(user: any): any {
-        return dataAccess.insertDocument(user, 'users');
+    // Obter usuario por id
+    public getUserByUserName(userName: string) : Promise<any> {
+        return this._dataAccess.getOneDocument('users', {username: userName});
     }
 
-    // Return a promise of an array of users
-    public getAllUsers(): any {
-        return dataAccess.getAllDocuments('users');
+    // Obter usuario por id
+    public getUserById(id: string | ObjectID ) : Promise<any> {
+        return this._dataAccess.getDocumentById('users', id);
     }
 
-    public addConta(idUser: string, idConta: string): any {
-        if (dataAccess.dbConnection) {
-            return dataAccess.dbConnection.collection('users').update({ _id: idUser }, { $push: { contas: idConta } });
-        }
-    }
-
-    public removeConta(idUser: string, idConta: string): any {
-        if (dataAccess.dbConnection) {
-            return dataAccess.dbConnection.collection('users').update({ _id: idUser }, { $pull: { contas: { $in: [idConta] } } }, { multi: true });
-        }
+    // Inserir um usuário
+    public insertUser(user: {}) : Promise<InsertOneWriteOpResult> {
+        return this._dataAccess.insertDocument('users', user);
     }
 }
