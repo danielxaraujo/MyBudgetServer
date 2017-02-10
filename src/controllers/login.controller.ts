@@ -14,7 +14,7 @@ router.post("/login", (request: Request, response: Response, next: NextFunction)
 
 	logger.info("** Login - Resquest body.username: %s", request.body.username);
 
-	let userName = request.body.username;
+	let username = request.body.username;
 	let password = request.body.password;
 
     if (!password || !password.trim()) {
@@ -22,7 +22,7 @@ router.post("/login", (request: Request, response: Response, next: NextFunction)
         return next(err);
     }
 
-	userDAO.getUserByUserName(request.body.username).then(user => {
+	userDAO.getUserByUserName(username).then(user => {
 		const token = sign({ "user": user.username, permissions: [] }, secret, { expiresIn: "7d" });
 		response.json({
 			"status": "sucesso",

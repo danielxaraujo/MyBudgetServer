@@ -17,6 +17,7 @@ export class DataAccess {
             logger.info('## Conectado com sucesso com o MongoBD');
         }).catch(err => {
             logger.info('## Erro ao tentar se conectar com MongoBD: %j', err);
+            throw err;
         });;
     }
 
