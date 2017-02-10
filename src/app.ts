@@ -1,3 +1,4 @@
+import 'core-js/es7/reflect';
 import * as express from 'express';
 import * as expressLogging from 'express-logging';
 import * as logger from 'logops';

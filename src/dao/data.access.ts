@@ -1,6 +1,5 @@
-import 'core-js/es7/reflect';
 import * as logger from 'logops';
-import { MongoClient, Db, ObjectID, } from 'mongodb';
+import { MongoClient, Db, ObjectID, InsertOneWriteOpResult } from 'mongodb';
 import { Promise } from 'core-js';
 import { Service } from 'typedi';
 
@@ -26,13 +25,31 @@ export class DataAccess {
         this._db.close();
     }
 
+    // Realiza uma busca por id
+    public getDocumentById(collectionName: string, id: string | ObjectID): any {
+        if (id instanceof String) {
+            id = ObjectID.createFromHexString(id);
+        }
+        return this._db.collection(collectionName).findOne({_id: id});
+    }
+
     // Realiza uma busca em uma coleção
-    public findDocument(collectionName: string, query: {}) : Promise<any[]> {
+    public getDocuments(collectionName: string, query: {}) : Promise<any[]> {
         return this._db.collection(collectionName).find(query).toArray();
     }
 
-    // Retornar todos os elementos de um documento
-    public findAllDocuments(collectionName: string) : Promise<any[]> {
+    // Realiza uma busca em uma coleção
+    public getOneDocument(collectionName: string, query: {}) : Promise<any[]> {
+        return this._db.collection(collectionName).findOne(query);
+    }
+
+    // Retorna todos os elementos de uma coleção
+    public getAllDocuments(collectionName: string) : Promise<any[]> {
         return this._db.collection(collectionName).find().toArray();
+    }
+
+    // Inserir um documento na coleção
+    public insertDocument(collectionName: string, document: {}) : Promise<InsertOneWriteOpResult> {
+        return this._db.collection(collectionName).insert(document);
     }
 }
