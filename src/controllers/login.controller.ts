@@ -1,11 +1,11 @@
 import * as logger from 'logops';
+import { Container } from 'typedi';
 import { Router, Request, Response, NextFunction } from "express";
 import { randomBytes, pbkdf2 } from "crypto";
 import { sign } from "jsonwebtoken";
 import { secret, length, digest } from "../config";
 import { UserDAO } from "../dao/";
-import { Container } from 'typedi';
-import { ObjectID, InsertOneWriteOpResult } from 'mongodb';
+
 
 const userDAO: UserDAO = Container.get(UserDAO);
 

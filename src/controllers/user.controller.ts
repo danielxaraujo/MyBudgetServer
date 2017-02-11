@@ -1,7 +1,7 @@
 import * as logger from 'logops';
+import { Container } from 'typedi';
 import { Router, Request, Response, NextFunction } from "express";
 import { UserDAO } from "../dao";
-import { Container } from 'typedi';
 
 const userDAO: UserDAO = Container.get(UserDAO);
 
