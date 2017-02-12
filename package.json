@@ -13,6 +13,7 @@
 		"express": "^4.14.1",
 		"body-parser": "^1.16.1",
 		"jsonwebtoken": "^7.2.1",
+		"bcrypt": "^1.0.2",
 		"mongodb": "^2.2.22",
 		"typedi": "^0.4.3"
 	},
@@ -22,6 +23,7 @@
 		"@types/express": "^4.0.35",
 		"@types/body-parser": "0.0.33",
 		"@types/jsonwebtoken": "^7.2.0",
+		"@types/bcrypt": "^1.0.0",
 		"@types/mongodb": "^2.1.39",
 		"nodemon": "^1.11.0",
 		"ts-node": "2.1.0",
