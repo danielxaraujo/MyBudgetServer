@@ -1,7 +1,7 @@
 import * as logger from 'logops';
 import { Container } from 'typedi';
 import { Router, Request, Response, NextFunction } from "express";
-import { genSalt, hash } from "bcrypt";
+import { genSalt, hash, compareSync } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { secret, length, digest } from "../config";
 import { UserDAO } from "../dao/";
@@ -22,7 +22,7 @@ router.post("/login", (request: Request, response: Response, next: NextFunction)
 	userDAO.getUserByUserName(username).then(user => {
 		genSalt(10, (err, salt) => {
 			hash(password, salt, (err, hash) => {
-				if (user.password = hash) {
+				if (compareSync(user.password, hash)) {
 					const token = sign({ "username": user.username }, secret, { expiresIn: "7d" });
 					response.status(201).json({status: "sucesso", jwt: token});
 				}
