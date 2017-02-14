@@ -35,7 +35,7 @@ export class DataAccess {
     }
 
     // Realiza uma busca em uma coleção
-    public getDocuments(collectionName: string, query: {}) : Promise<any[]> {
+    public getDocuments(collectionName: string, query = {}) : Promise<any[]> {
         return this._db.collection(collectionName).find(query).toArray();
     }
 
