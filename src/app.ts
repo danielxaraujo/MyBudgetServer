@@ -2,7 +2,7 @@ import 'core-js/es7/reflect';
 import * as logger from 'logops';
 import * as express from 'express';
 import { json, urlencoded } from "body-parser";
-import { LoginController, UserController } from './controllers';
+import { ProtectedController, LoginController, UserController } from './controllers';
 import { DataAccess } from './dao';
 import { Container } from 'typedi';
 
@@ -17,6 +17,7 @@ const port: number = process.env.PORT || 3000;
 
 // Montando o Controller para gerenciar os usuários 
 app.use('/', LoginController);
+app.use('/api', ProtectedController);
 app.use('/api/users', UserController);
 
 // Iniciar o servidor na porta especificada

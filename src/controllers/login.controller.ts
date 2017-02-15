@@ -3,7 +3,7 @@ import { Container } from 'typedi';
 import { Router, Request, Response, NextFunction } from "express";
 import { genSalt, hash, compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
-import { secret, length, digest } from "../config";
+import { secret, rounds, algorithm } from "../config";
 import { UserDAO } from "../dao/";
 
 const userDAO: UserDAO = Container.get(UserDAO);
@@ -22,7 +22,7 @@ router.post("/login", (request: Request, response: Response, next: NextFunction)
 	userDAO.getUserByUserName(username).then(user => {
 		compare(password, user.password).then(isValid => {
 			if (isValid) {
-				const token = sign({ "username": user.username }, secret, { expiresIn: "7d" });
+				const token = sign({ "username": user.username }, secret, { algorithm: algorithm, expiresIn: "1d" });
 				response.status(201).json({status: "sucesso", jwt: token});
 			} else {
 				response.status(401).json({status: "Não autorizado"});
@@ -54,11 +54,11 @@ router.post("/signup", (request: Request, response: Response, next: NextFunction
 		if (user) {
 			response.status(201).json({status: "erro", message: "Usuário já existente!"});
 		} else {
-			hash(newUser.password, 10).then(hash => {
+			hash(newUser.password, rounds).then(hash => {
 				newUser.password = hash;
 				userDAO.insertUser(newUser).then(value => {
 					userDAO.getUserById(value.insertedId).then(savedUser => {
-						const token = sign({ "username": savedUser.username }, secret, { expiresIn: "7d" });
+						const token = sign({ "username": savedUser.username }, secret, { algorithm: algorithm, expiresIn: "1d" });
 						response.status(201).json({status: "sucesso", jwt: token});
 					}).catch(err => {
 						logger.info(err);
