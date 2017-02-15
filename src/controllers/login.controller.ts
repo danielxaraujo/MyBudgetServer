@@ -1,7 +1,7 @@
 import * as logger from 'logops';
 import { Container } from 'typedi';
 import { Router, Request, Response, NextFunction } from "express";
-import { genSalt, hash, compareSync } from "bcryptjs";
+import { genSalt, hash, compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { secret, length, digest } from "../config";
 import { UserDAO } from "../dao/";
@@ -20,12 +20,16 @@ router.post("/login", (request: Request, response: Response, next: NextFunction)
     }
 
 	userDAO.getUserByUserName(username).then(user => {
-		if (compareSync(password, user.password)) {
-			const token = sign({ "username": user.username }, secret, { expiresIn: "7d" });
-			response.status(201).json({status: "sucesso", jwt: token});
-		} else {
-			response.status(401).json({status: "Não autorizado"});
-		}
+		compare(password, user.password).then(isValid => {
+			if (isValid) {
+				const token = sign({ "username": user.username }, secret, { expiresIn: "7d" });
+				response.status(201).json({status: "sucesso", jwt: token});
+			} else {
+				response.status(401).json({status: "Não autorizado"});
+			}
+		}).catch(err => {
+			response.status(401).json({status: "Não autorizado"});	
+		});
 	}).catch(err => {
 		response.status(401).json({status: "Não autorizado"});
 	})
@@ -36,10 +40,9 @@ router.post("/signup", (request: Request, response: Response, next: NextFunction
 	logger.info("** Signup - Resquest body.username: %s", request.body.username);
 	logger.info("** Signup - Resquest body.password: %s", request.body.password);
 
-	let newUser : { username, password, salt }= {
+	let newUser : { username, password }= {
 		username: request.body.username,
-		password: request.body.password,
-		salt: ''
+		password: request.body.password
 	}
 
     if (!newUser.password || !newUser.password.trim()) {
@@ -51,21 +54,20 @@ router.post("/signup", (request: Request, response: Response, next: NextFunction
 		if (user) {
 			response.status(201).json({status: "erro", message: "Usuário já existente!"});
 		} else {
-			genSalt(10, (err, salt) => {
-				newUser.salt = salt;
-				hash(newUser.password, salt, (err, hash) => {
-					newUser.password = hash;
-					userDAO.insertUser(newUser).then(value => {
-						userDAO.getUserById(value.insertedId).then(savedUser => {
-							const token = sign({ "username": savedUser.username }, secret, { expiresIn: "7d" });
-							response.status(201).json({status: "sucesso", jwt: token});
-						}).catch(err => {
-							logger.info(err);
-						});
+			hash(newUser.password, 10).then(hash => {
+				newUser.password = hash;
+				userDAO.insertUser(newUser).then(value => {
+					userDAO.getUserById(value.insertedId).then(savedUser => {
+						const token = sign({ "username": savedUser.username }, secret, { expiresIn: "7d" });
+						response.status(201).json({status: "sucesso", jwt: token});
 					}).catch(err => {
 						logger.info(err);
 					});
+				}).catch(err => {
+					logger.info(err);
 				});
+			}).catch(err => {
+				logger.info(err);
 			});
 		}
     });

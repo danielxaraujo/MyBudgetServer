@@ -14,7 +14,7 @@
 		"jsonwebtoken": "7.3.0",
 		"bcryptjs": "2.4.3",
 		"logops": "1.0.7",
-		"mongodb": "2.2.23",
+		"mongodb": "2.2.24",
 		"typedi": "0.4.3"
 	},
 	"devDependencies": {

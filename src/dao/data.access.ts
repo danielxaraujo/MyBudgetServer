@@ -28,25 +28,20 @@ export class DataAccess {
 
     // Realiza uma busca por id
     public getDocumentById(collectionName: string, id: string | ObjectID): any {
-        if (id instanceof String) {
-            id = ObjectID.createFromHexString(id);
+        if (typeof id === 'string') {
+            id = new ObjectID(id);
         }
         return this._db.collection(collectionName).findOne({_id: id});
     }
 
     // Realiza uma busca em uma coleção
-    public getDocuments(collectionName: string, query = {}) : Promise<any[]> {
-        return this._db.collection(collectionName).find(query).toArray();
-    }
-
-    // Realiza uma busca em uma coleção
-    public getOneDocument(collectionName: string, query: {}) : Promise<any[]> {
+    public getDocument(collectionName: string, query: {}) : Promise<any[]> {
         return this._db.collection(collectionName).findOne(query);
     }
 
-    // Retorna todos os elementos de uma coleção
-    public getAllDocuments(collectionName: string) : Promise<any[]> {
-        return this._db.collection(collectionName).find().toArray();
+    // Realiza uma busca em uma coleção
+    public getDocuments(collectionName: string, query = {}) : Promise<any[]> {
+        return this._db.collection(collectionName).find(query).toArray();
     }
 
     // Inserir um documento na coleção

@@ -10,9 +10,14 @@ export class UserDAO {
     @Inject()
     private _dataAccess: DataAccess;
 
-    // Obter todos os usuários
-    public getAllUsers() : Promise<any[]> {
-        return this._dataAccess.getAllDocuments('users');
+    // Obter usuario por id
+    public getUserById(id: string | ObjectID ) : Promise<any> {
+        return this._dataAccess.getDocumentById('users', id);
+    }
+
+    // Obter usuario por id
+    public getUserByUserName(userName: string) : Promise<any> {
+        return this._dataAccess.getDocument('users', {username: userName});
     }
 
     // Obter usuários pelo critério de consulta
@@ -20,14 +25,9 @@ export class UserDAO {
         return this._dataAccess.getDocuments('users', query);
     }
 
-    // Obter usuario por id
-    public getUserByUserName(userName: string) : Promise<any> {
-        return this._dataAccess.getOneDocument('users', {username: userName});
-    }
-
-    // Obter usuario por id
-    public getUserById(id: string | ObjectID ) : Promise<any> {
-        return this._dataAccess.getDocumentById('users', id);
+    // Obter todos os usuários
+    public getAllUsers() : Promise<any[]> {
+        return this._dataAccess.getDocuments('users');
     }
 
     // Inserir um usuário

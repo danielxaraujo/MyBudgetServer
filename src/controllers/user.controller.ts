@@ -8,6 +8,17 @@ const userDAO: UserDAO = Container.get(UserDAO);
 const router: Router = Router();
 
 // Controller para gerenciar os usuários
+router.post("/id", (request: Request, response: Response, next: NextFunction) => {
+    logger.info("## UserRouter - users/id - request: %j", request.body.userId);
+    userDAO.getUserById(request.body.userId).then(user => {
+        return response.json({
+            "status": "sucesso",
+            "users": user
+        });
+    })
+});
+
+// Controller para gerenciar os usuários
 router.get("/all", (request: Request, response: Response, next: NextFunction) => {
     logger.info("## UserRouter - getAllUsers - request: %j", request.body);
     userDAO.getAllUsers().then(users => {
