@@ -14,9 +14,9 @@ router.use((request: Request & { headers: { authorization: string }, userName: s
 				message: "Token inválido! Faça o login primeiro."
 			});
         }
-        // Popula o objeto de Request com o userName na própria request, contido no token verificado, para utilização nas chamadas da api.        
-		logger.info("** DecodedToken.userName: %j", decodedToken.userName);
-        request.userName = decodedToken.userName;
+        // Popula o objeto de Request com o userName na própria request, contido no token verificado, para utilização nas chamadas da api.
+		logger.info("** DecodedToken.userName: %j", (decodedToken as any).userName);
+        request.userName = (decodedToken as any).userName;
 		next();
 	});
 });

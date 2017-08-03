@@ -7,9 +7,13 @@ import { Service, Inject } from 'typedi';
 export class TransactionDAO {
 
     @Inject()
-    private _dataAccess: DataAccess;
+	private _dataAccess: DataAccess;
 
-    public getTransaction(query: {}) : Promise<any[]> {
+    public getTransactionById(id: string | ObjectID ) : Promise<any> {
+        return this._dataAccess.getDocumentById('transactions', id);
+    }
+
+    public getTransactions(query: {}) : Promise<any[]> {
         return this._dataAccess.getDocuments('transactions', query);
     }
 
