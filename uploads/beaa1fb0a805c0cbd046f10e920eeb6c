@@ -1,0 +1,285 @@
+OFXHEADER:100DATA:OFXSGMLVERSION:102SECURITY:NONEENCODING:USASCIICHARSET:1252COMPRESSION:NONEOLDFILEUID:NONENEWFILEUID:NONE<OFX>
+   <SIGNONMSGSRSV1>
+      <SONRS>
+         <STATUS>
+            <CODE>0</CODE>
+            <SEVERITY>INFO</SEVERITY>
+         </STATUS>
+         <DTSERVER>20170807120000[-3:BRT]</DTSERVER>
+         <LANGUAGE>POR</LANGUAGE>
+         <FI>
+            <ORG>Banco do Brasil</ORG>
+            <FID>1</FID>
+         </FI>
+      </SONRS>
+   </SIGNONMSGSRSV1>
+   <BANKMSGSRSV1>
+      <STMTTRNRS>
+         <TRNUID>1</TRNUID>
+         <STATUS>
+            <CODE>0</CODE>
+            <SEVERITY>INFO</SEVERITY>
+         </STATUS>
+         <STMTRS>
+            <CURDEF>BRL</CURDEF>
+            <BANKACCTFROM>
+               <BANKID>1</BANKID>
+               <BRANCHID>3653-6</BRANCHID>
+               <ACCTID>15248-X</ACCTID>
+               <ACCTTYPE>CHECKING</ACCTTYPE>
+            </BANKACCTFROM>
+            <BANKTRANLIST>
+               <DTSTART>20170731120000[-3:BRT]</DTSTART>
+               <DTEND>20170807120000[-3:BRT]</DTEND>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170801120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>5906.56</TRNAMT>
+                  <FITID>2017080105906560</FITID>
+                  <CHECKNUM>000000015832</CHECKNUM>
+                  <REFNUM>15.832</REFNUM>
+                  <MEMO>Recebimento de Proventos - EMPRESA DE TECNOLOGIA INFORMACOES PREV</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170801120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-18.91</TRNAMT>
+                  <FITID>20170801118910</FITID>
+                  <CHECKNUM>000000145874</CHECKNUM>
+                  <REFNUM>145.874</REFNUM>
+                  <MEMO>Compra com Cartão - 01/08 12:44 CAMARAO GRILL</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170801120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-7.00</TRNAMT>
+                  <FITID>2017080117000</FITID>
+                  <CHECKNUM>000000269037</CHECKNUM>
+                  <REFNUM>269.037</REFNUM>
+                  <MEMO>Compra com Cartão - 01/08 19:10 ESTACIONAMENTO DEL P</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170801120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-70.00</TRNAMT>
+                  <FITID>20170801170000</FITID>
+                  <CHECKNUM>649300619634</CHECKNUM>
+                  <REFNUM>649.300.619.634</REFNUM>
+                  <MEMO>Banco 24 Horas - 01/08 16:02 P. ACUCAR CENTER UM I</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170801120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-158.40</TRNAMT>
+                  <FITID>201708011158400</FITID>
+                  <CHECKNUM>000000046834</CHECKNUM>
+                  <REFNUM>46.834</REFNUM>
+                  <MEMO>Vivo Celular</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170801120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-1.51</TRNAMT>
+                  <FITID>2017080111510</FITID>
+                  <CHECKNUM>000511058916</CHECKNUM>
+                  <REFNUM>511.058.916</REFNUM>
+                  <MEMO>Cobrança de Juros</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170801120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-0.51</TRNAMT>
+                  <FITID>201708011510</FITID>
+                  <CHECKNUM>000391100701</CHECKNUM>
+                  <REFNUM>391.100.701</REFNUM>
+                  <MEMO>Cobrança de I.O.F.</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170802120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>500.00</TRNAMT>
+                  <FITID>201708020500000</FITID>
+                  <CHECKNUM>002381968094</CHECKNUM>
+                  <REFNUM>2.381.968.094</REFNUM>
+                  <MEMO>Depósito Online</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170802120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-25.07</TRNAMT>
+                  <FITID>20170802125070</FITID>
+                  <CHECKNUM>000000144755</CHECKNUM>
+                  <REFNUM>144.755</REFNUM>
+                  <MEMO>Compra com Cartão - 02/08 12:25 BUDEGA CARIRI</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170802120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-50.00</TRNAMT>
+                  <FITID>20170802150000</FITID>
+                  <CHECKNUM>000000273519</CHECKNUM>
+                  <REFNUM>273.519</REFNUM>
+                  <MEMO>Compra com Cartão - 02/08 20:25 POSTO CINCO ESTRE</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170802120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-57.53</TRNAMT>
+                  <FITID>20170802157530</FITID>
+                  <CHECKNUM>000000377272</CHECKNUM>
+                  <REFNUM>377.272</REFNUM>
+                  <MEMO>Compra com Cartão - 02/08 21:27 BARNEY'S BURGER</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170802120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-365.63</TRNAMT>
+                  <FITID>201708021365630</FITID>
+                  <CHECKNUM>365300020390</CHECKNUM>
+                  <REFNUM>530.365.300.020.390</REFNUM>
+                  <MEMO>Pagto cartão crédito</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170802120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-1000.00</TRNAMT>
+                  <FITID>2017080211000000</FITID>
+                  <CHECKNUM>917000022791</CHECKNUM>
+                  <REFNUM>602.917.000.022.791</REFNUM>
+                  <MEMO>Transferência on line - 02/08 2917      22791-9 LIANA BARBOSA</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170803120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-21.89</TRNAMT>
+                  <FITID>20170803121890</FITID>
+                  <CHECKNUM>000000144888</CHECKNUM>
+                  <REFNUM>144.888</REFNUM>
+                  <MEMO>Compra com Cartão - 03/08 12:28 SONIA MARIA MATTO</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170804120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-22.19</TRNAMT>
+                  <FITID>20170804122190</FITID>
+                  <CHECKNUM>000000144494</CHECKNUM>
+                  <REFNUM>144.494</REFNUM>
+                  <MEMO>Compra com Cartão - 04/08 12:21 LA BOQUERIA</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170804120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-6.30</TRNAMT>
+                  <FITID>2017080416300</FITID>
+                  <CHECKNUM>000000246819</CHECKNUM>
+                  <REFNUM>246.819</REFNUM>
+                  <MEMO>Compra com Cartão - 04/08 13:00 KOPENHAGEN</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170804120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-17.00</TRNAMT>
+                  <FITID>20170804117000</FITID>
+                  <CHECKNUM>000000370248</CHECKNUM>
+                  <REFNUM>370.248</REFNUM>
+                  <MEMO>Compra com Cartão - 04/08 19:30 ESTACIONAMENTO DEL P</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170804120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-105.00</TRNAMT>
+                  <FITID>201708041105000</FITID>
+                  <CHECKNUM>000000683984</CHECKNUM>
+                  <REFNUM>683.984</REFNUM>
+                  <MEMO>Compra com Cartão - 04/08 23:19 GARRAFEIRA BISTRO</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170804120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-75.00</TRNAMT>
+                  <FITID>20170804175000</FITID>
+                  <CHECKNUM>646000037580</CHECKNUM>
+                  <REFNUM>603.646.000.037.580</REFNUM>
+                  <MEMO>Transferência on line - 04/08 3646      37580-2 TANIA MARIA BE</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170807120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-70.00</TRNAMT>
+                  <FITID>20170807170000</FITID>
+                  <CHECKNUM>000000105074</CHECKNUM>
+                  <REFNUM>105.074</REFNUM>
+                  <MEMO>Compra com Cartão - 05/08 01:24 GARRAFEIRA 520 - Data balanc.: 07/08/2017</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170807120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-22.74</TRNAMT>
+                  <FITID>20170807122740</FITID>
+                  <CHECKNUM>000000244821</CHECKNUM>
+                  <REFNUM>244.821</REFNUM>
+                  <MEMO>Compra com Cartão - 05/08 12:27 MERCADINHO SAO LUIZ</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170807120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-50.00</TRNAMT>
+                  <FITID>20170807150000</FITID>
+                  <CHECKNUM>000000347197</CHECKNUM>
+                  <REFNUM>347.197</REFNUM>
+                  <MEMO>Compra com Cartão - 05/08 13:06 AUTO POSTO SAO JO</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170807120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-30.00</TRNAMT>
+                  <FITID>20170807130000</FITID>
+                  <CHECKNUM>000000651497</CHECKNUM>
+                  <REFNUM>651.497</REFNUM>
+                  <MEMO>Compra com Cartão - 05/08 14:18 MANGUE SECO</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170807120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-24.00</TRNAMT>
+                  <FITID>20170807124000</FITID>
+                  <CHECKNUM>000000761101</CHECKNUM>
+                  <REFNUM>761.101</REFNUM>
+                  <MEMO>Compra com Cartão - 05/08 16:58 ANTONIA MARIA DE LIM</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170807120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-41.60</TRNAMT>
+                  <FITID>20170807141600</FITID>
+                  <CHECKNUM>000000885278</CHECKNUM>
+                  <REFNUM>885.278</REFNUM>
+                  <MEMO>Compra com Cartão - 06/08 23:41 HABIBS PATIO COCO</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170807120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-73.89</TRNAMT>
+                  <FITID>20170807173890</FITID>
+                  <CHECKNUM>000000040208</CHECKNUM>
+                  <REFNUM>40.208</REFNUM>
+                  <MEMO>Pagamento conta luz - Data balanc.: 07/08/2017</MEMO>
+               </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170807120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-160.18</TRNAMT>
+                  <FITID>201708071160180</FITID>
+                  <CHECKNUM>000000048539</CHECKNUM>
+                  <REFNUM>48.539</REFNUM>
+                  <MEMO>TV por assinatura - Data balanc.: 07/08/2017</MEMO>
+               </STMTTRN>
+            </BANKTRANLIST>
+            <LEDGERBAL>
+               <BALAMT>7676.45</BALAMT>
+               <DTASOF>20170807120000[-3:BRT]</DTASOF>
+            </LEDGERBAL>
+         </STMTRS>
+      </STMTTRNRS>
+   </BANKMSGSRSV1>
+</OFX>

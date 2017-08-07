@@ -3,3 +3,4 @@ export * from './login.controller';
 export * from './user.controller';
 export * from './account.controller';
 export * from './transaction.controller';
+export * from './import.controller';

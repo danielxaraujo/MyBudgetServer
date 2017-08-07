@@ -14,8 +14,10 @@
 		"express-jwt": "^5.1.0",
 		"jsonwebtoken": "7.4.1",
 		"bcryptjs": "2.4.3",
+		"multer": "^1.3.0",
 		"logops": "2.1.0",
 		"mongodb": "2.2.30",
+		"banking": "1.1.0",
 		"typedi": "0.5.2"
 	},
 	"devDependencies": {
