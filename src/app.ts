@@ -1,6 +1,7 @@
 import 'core-js/es7/reflect';
 import * as logger from 'logops';
 import * as express from 'express';
+import * as multer from 'multer';
 import { Request, Response, NextFunction } from "express";
 import { json, urlencoded } from "body-parser";
 import { ProtectedController, LoginController, UserController, AccountController, TransactionController, ImportController } from './controllers';
@@ -12,6 +13,7 @@ const app: express.Application = express();
 
 app.use(json());
 app.use(urlencoded({ extended: true }));
+app.use(multer().single('file'));
 
 // Porta que o express irá escutar as requisições
 let port: any = process.env.PORT || 3000;
