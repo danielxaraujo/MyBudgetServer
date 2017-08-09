@@ -29,4 +29,5 @@ export class Transaction {
 		public account_id?: ObjectID,
 		public checked?: boolean,
 	) { }
+
 }
