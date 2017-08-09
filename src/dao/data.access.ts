@@ -1,51 +1,45 @@
 import * as logger from 'logops';
 import { MongoClient, Db, ObjectID, InsertOneWriteOpResult } from 'mongodb';
-import { Promise } from 'core-js';
 import { Service } from 'typedi';
 
 // Classe genérica para manipulação do MongoDB
 @Service()
-export class DataAccess {
+export class DataAccess<T> {
 
     private _db: Db = null;
     private _shareItUrl: string = 'mongodb://127.0.0.1:27017/budget';
 
     // Abrir conexão com o MongoDB
-    public openDbConnection() {
-        return MongoClient.connect(this._shareItUrl).then(db => {
-            this._db = db;
-            logger.info('## Conectado com sucesso com o MongoBD');
-        }).catch(err => {
-            logger.info('## Erro ao tentar se conectar com MongoBD: %j', err);
-            throw err;
-        });;
+    public async openDbConnection() {
+		this._db = await MongoClient.connect(this._shareItUrl);
+		logger.info('## Conectado com sucesso com o MongoBD');
     }
 
     // Fechar conexão com o MongoDB
-    public closeDbConnection() {
-        this._db.close();
+    public async closeDbConnection() {
+        await this._db.close();
     }
 
     // Realiza uma busca por id
-    public getDocumentById(collectionName: string, id: string | ObjectID): any {
+    public async getDocumentById(collectionName: string, id: string | ObjectID): Promise<T> {
         if (typeof id === 'string') {
             id = new ObjectID(id);
         }
-        return this._db.collection(collectionName).findOne({_id: id});
+        return this._db.collection<T>(collectionName).findOne({_id: id});
     }
 
     // Realiza uma busca em uma coleção
-    public getDocument(collectionName: string, query: {}) : Promise<any[]> {
-        return this._db.collection(collectionName).findOne(query);
+    public async getDocument(collectionName: string, query: {}) : Promise<T> {
+        return this._db.collection<T>(collectionName).findOne(query);
     }
 
     // Realiza uma busca em uma coleção
-    public getDocuments(collectionName: string, query = {}) : Promise<any[]> {
-        return this._db.collection(collectionName).find(query).toArray();
+    public async getDocuments(collectionName: string, query = {}) : Promise<T[]> {
+        return this._db.collection<T>(collectionName).find(query).toArray();
     }
 
     // Inserir um documento na coleção
-    public insertDocument(collectionName: string, document: {}) : Promise<InsertOneWriteOpResult> {
-        return this._db.collection(collectionName).insertOne(document);
+    public async insertDocument(collectionName: string, document: T) : Promise<InsertOneWriteOpResult> {
+        return this._db.collection<T>(collectionName).insertOne(document);
     }
 }

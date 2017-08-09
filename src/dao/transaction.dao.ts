@@ -1,27 +1,34 @@
-import { Promise } from 'core-js';
+//import { Promise } from 'core-js';
 import { ObjectID, InsertOneWriteOpResult } from 'mongodb';
-import { DataAccess } from './data.access';
 import { Service, Inject } from 'typedi';
+import { DataAccess } from './data.access';
+import { Transaction } from "../to";
 
 @Service()
 export class TransactionDAO {
 
     @Inject()
-	private _dataAccess: DataAccess;
+	private _dataAccess: DataAccess<Transaction>;
 
-    public getTransactionById(id: string | ObjectID ) : Promise<any> {
+    public async getTransactionById(id: string | ObjectID ) : Promise<Transaction> {
         return this._dataAccess.getDocumentById('transactions', id);
     }
 
-    public getTransactions(query: {}) : Promise<any[]> {
+    public async getTransactions(query: {}) : Promise<Transaction[]> {
         return this._dataAccess.getDocuments('transactions', query);
     }
 
-    public getAllTransaction() : Promise<any[]> {
+    public async getAllTransaction() : Promise<Transaction[]> {
         return this._dataAccess.getDocuments('transactions');
     }
 
-    public insertTransaction(transaction: {}) : Promise<InsertOneWriteOpResult> {
-        return this._dataAccess.insertDocument('transactions', transaction);
+    public async insertTransaction(transaction: Transaction) : Promise<Transaction> {
+		let insertResult : InsertOneWriteOpResult = await this._dataAccess.insertDocument('transactions', transaction);
+		if (insertResult.insertedCount == 1) {
+			transaction._id = insertResult.insertedId;
+			return transaction;
+		} else {
+			return null;
+		}
     }
 }
